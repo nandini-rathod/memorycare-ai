@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --patient-bg: #EAF6F6;
+  --patient-primary: #2C7873;
+  --patient-secondary: #52AB98;
+  --patient-accent: #F7B731;
+  --patient-text: #1A2E2E;
+  --patient-card: #FFFFFF;
+  --patient-border: #B2DFDB;
+
+  --care-bg: #F4F7FE;
+  --care-primary: #4361EE;
+  --care-secondary: #3A0CA3;
+  --care-accent: #F72585;
+  --care-success: #06D6A0;
+  --care-warning: #FFB703;
+  --care-danger: #EF233C;
+  --care-text: #1A1A2E;
+  --care-card: #FFFFFF;
+  --care-border: #E2E8F0;
+  --care-muted: #94A3B8;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-nunito), "Nunito", sans-serif; -webkit-font-smoothing: antialiased; }
+
+.patient-interface { font-size: 1.25rem; line-height: 1.6; }
+.patient-interface * { font-size: 1.25rem; }
+
+@keyframes pulse-ring {
+  0%   { transform: scale(1);   opacity: 0.8; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+@keyframes pulse-ring-2 {
+  0%   { transform: scale(1);   opacity: 0.6; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+.mic-listening::before {
+  content: ''; position: absolute; inset: -8px; border-radius: 50%;
+  background: rgba(239,68,68,0.3); animation: pulse-ring 1.2s ease-out infinite;
+}
+.mic-listening::after {
+  content: ''; position: absolute; inset: -16px; border-radius: 50%;
+  background: rgba(239,68,68,0.15); animation: pulse-ring-2 1.2s ease-out infinite 0.3s;
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.animate-slide-up  { animation: slide-up 0.5s ease forwards; }
+.animate-fade-in   { animation: fade-in 0.4s ease forwards; }
+.reminder-overlay  { animation: fade-in 0.3s ease forwards; }
+
+::-webkit-scrollbar       { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
+
+.card-hover { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.card-hover:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.12); }
+
+.gradient-text {
+  background: linear-gradient(135deg, #2C7873, #52AB98);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.gradient-text-care {
+  background: linear-gradient(135deg, #4361EE, #3A0CA3);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
