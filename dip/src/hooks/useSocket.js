@@ -2,7 +2,8 @@
 import { useEffect, useRef, useState } from "react";
 import { io } from "socket.io-client";
 
-const SOCKET_URL = process.env.NEXT_PUBLIC_SOCKET_URL || "http://localhost:5001";
+const SOCKET_URL =
+  process.env.NEXT_PUBLIC_SOCKET_URL || "https://memorycare-ai.onrender.com";
 
 export function useSocket(patientId, role = "patient", caregiverId = null) {
   const socketRef = useRef(null);
