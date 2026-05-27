@@ -1,4 +1,4 @@
-require('dotenv').config();
+require("dotenv").config();
 const express = require("express");
 const http = require("http");
 const { Server } = require("socket.io");
@@ -19,7 +19,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: process.env.FRONTEND_URL || "http://localhost:3000",
+    origin: ["http://localhost:3000", "https://memorycare-ai-delta.vercel.app"],
     methods: ["GET", "POST"],
     credentials: true,
   },
@@ -31,9 +31,9 @@ app.set("io", io);
 // Middleware
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || "http://localhost:3000",
+    origin: ["http://localhost:3000", "https://memorycare-ai-delta.vercel.app"],
     credentials: true,
-  })
+  }),
 );
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
@@ -51,7 +51,7 @@ app.get("/api/health", (req, res) => {
 
 // Socket.io connection handling
 const connectedCaregivers = new Map(); // patientId -> Set of socket IDs
-const connectedPatients = new Map();   // patientId -> socket ID
+const connectedPatients = new Map(); // patientId -> socket ID
 
 io.on("connection", (socket) => {
   console.log("New socket connection:", socket.id);
